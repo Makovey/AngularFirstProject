@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngularFFB"
+    }
+  },
+  "defaultProject": "AngularFFB",
+  "cli": {
+    "analytics": false
+  }
 }
