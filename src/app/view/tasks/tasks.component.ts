@@ -15,7 +15,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tasks = this.dataHandler.getTasks();
+    this.dataHandler.tasksSubject.subscribe(tasks /* tasks - новое значение */ => this.tasks = tasks /* обновляем текущий массив */);
   }
 
 }
