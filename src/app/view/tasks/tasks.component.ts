@@ -18,4 +18,7 @@ export class TasksComponent implements OnInit {
     this.dataHandler.tasksSubject.subscribe(tasks /* tasks - новое значение */ => this.tasks = tasks /* обновляем текущий массив */);
   }
 
+  toggleTaskCompleted(task: Task) {
+    task.completed = !task.completed;
+  }
 }

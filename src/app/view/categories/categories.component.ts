@@ -11,6 +11,8 @@ export class CategoriesComponent implements OnInit {
 
   categories: Category[];
 
+  selectedCategory: Category;
+
   /**
    * Тестовые данные из TestData передается в сервис
    * Сервис (injectable) передает данные компоненту
@@ -27,6 +29,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   showTasksByCategory(category: Category) {
+    this.selectedCategory = category;
     this.dataHandler.fillTasksByCategory(category);
   }
 }
