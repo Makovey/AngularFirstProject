@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Category} from '../model/Category';
 import {TestData} from '../data/TestData';
 import {Task} from '../model/Task';
-import {Subject} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +14,10 @@ export class DataHandlerService {
    * дает понять подписчикам
    * произошли ли изменения в Task[]
    */
-  tasksSubject = new Subject<Task[]>();
+  tasksSubject = new BehaviorSubject<Task[]>(TestData.tasks);
+  categorySubject = new BehaviorSubject<Category[]>(TestData.categories);
 
   constructor() {
-  }
-
-  /**
-   * Метод получает массив данных из TestData
-   */
-  getCategories(): Category[] {
-    return TestData.categories;
   }
 
   /**
