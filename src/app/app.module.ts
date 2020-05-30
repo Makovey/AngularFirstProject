@@ -4,6 +4,10 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {CategoriesComponent} from './view/categories/categories.component';
 import {TasksComponent} from './view/tasks/tasks.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -12,7 +16,11 @@ import {TasksComponent} from './view/tasks/tasks.component';
     TasksComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
