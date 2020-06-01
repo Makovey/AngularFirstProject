@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DataHandlerService} from '../../services/data-handler.service';
 import {Task} from '../../model/Task';
 import {MatTableDataSource} from '@angular/material/table';
@@ -10,9 +10,12 @@ import {MatSort} from '@angular/material/sort';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit, AfterViewInit {
+export class TasksComponent implements OnInit {
 
+  // работает только на получение данных
+  @Input()
   tasks: Task[];
+
   dataSource: MatTableDataSource<Task>;
   displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category'];
 
@@ -26,13 +29,9 @@ export class TasksComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.dataHandler.getAllTasks().subscribe(tasks /* tasks - новое значение */ => this.tasks = tasks /* обновляем текущий массив */);
+    // this.dataHandler.getAllTasks().subscribe(tasks /* tasks - новое значение */ => this.tasks = tasks /* обновляем текущий массив */);
     this.dataSource = new MatTableDataSource();
-    this.refreshTable();
-  }
-
-  ngAfterViewInit(): void {
-    this.addTableObjects();
+    this.fillTable();
   }
 
   toggleTaskCompleted(task: Task) {
@@ -51,7 +50,7 @@ export class TasksComponent implements OnInit, AfterViewInit {
     return '#fff';
   }
 
-  private refreshTable(): void {
+  private fillTable(): void {
     this.dataSource.data = this.tasks;
 
     this.addTableObjects();
