@@ -12,8 +12,6 @@ import {MatSort} from '@angular/material/sort';
 })
 export class TasksComponent implements OnInit {
 
-  // работает только на получение данных
-  @Input()
   tasks: Task[];
 
   dataSource: MatTableDataSource<Task>;
@@ -24,6 +22,12 @@ export class TasksComponent implements OnInit {
 
   @ViewChild(MatSort, {static: false})
   private sort: MatSort;
+
+  @Input('tasks')
+  private set setTasks(tasks: Task[]) {
+    this.tasks = tasks;
+    this.fillTable();
+  }
 
   constructor(private dataHandler: DataHandlerService) {
   }
@@ -51,6 +55,11 @@ export class TasksComponent implements OnInit {
   }
 
   private fillTable(): void {
+
+    if (!this.dataSource) {
+      return;
+    }
+
     this.dataSource.data = this.tasks;
 
     this.addTableObjects();

@@ -5,7 +5,7 @@ import {Category} from '../../../model/Category';
 import {Priority} from '../../../model/Priority';
 import {TestData} from '../../TestData';
 
-export class TaskDAOImpl implements TaskDAO{
+export class TaskDAOImpl implements TaskDAO {
   add(T): Observable<Task> {
     return undefined;
   }
@@ -39,6 +39,17 @@ export class TaskDAOImpl implements TaskDAO{
   }
 
   search(category: Category, searchText: string, status: boolean, priority: Priority) {
+    return of(this.searchTasks(category, searchText, status, priority));
+  }
+
+  private searchTasks(category: Category, searchText: string, status: boolean, priority: Priority): Task[] {
+    let allTasks = TestData.tasks;
+
+    if (category != null) {
+      allTasks = allTasks.filter(todo => todo.category === category);
+    }
+
+    return allTasks;
   }
 
   update(T): Observable<Task> {

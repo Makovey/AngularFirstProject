@@ -3,7 +3,7 @@
     <div class="card-header card-header-warning">
       <h4 class="card-title">Список задач</h4>
     </div>
-    <div class="card-body table-responsive" *ngIf="tasks.length != 0">
+    <div class="card-body table-responsive" *ngIf="tasks && tasks.length != 0">
       <table mat-table [dataSource]="dataSource" matSort>
 
         <!--  цвет приоритета  -->
@@ -64,6 +64,6 @@
 
     </div>
 
-    <p *ngIf="tasks.length == 0" class="not-found">Данные не найдены</p>
+    <p *ngIf="tasks && tasks.length == 0" class="not-found">Данные не найдены</p>
   </div>
 </div>
